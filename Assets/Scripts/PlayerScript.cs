@@ -13,6 +13,8 @@ public class PlayerScript : MonoBehaviour
     public LayerMask groundLayer;
     public int health;
     public int lives;
+    public GameObject weapon;
+    public int moveDirection;
     HelperScript helper;
 
     void Start()
@@ -128,7 +130,24 @@ public class PlayerScript : MonoBehaviour
 
         }
 
+        Shoot();
 
+
+
+    }
+
+    public void Shoot()
+    {
+        moveDirection = 1;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            
+            GameObject clone;
+            clone = Instantiate(weapon, transform.position, transform.rotation);    
+            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();       
+            rb.linearVelocity = transform.right * 15;  
+            rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0.15f, transform.position.z + 1);
+        }
 
     }
 
@@ -139,7 +158,7 @@ public class PlayerScript : MonoBehaviour
             health = health - 1;
         }
 
-        if (other.gameObject.tag == "Lava")
+        if (other.gameObject.tag == "DeathPlain")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
