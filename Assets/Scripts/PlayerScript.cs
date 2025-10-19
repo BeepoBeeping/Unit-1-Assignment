@@ -71,7 +71,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow))
         {
-            xvel = -2.5f;
+            xvel = -2.75f;
             helper.DoFlipObject(true);
             ExtendedRayCollisionCheck(0.25f, 0);
             anim.SetBool("isRunning", true);
@@ -79,7 +79,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
         {
-            xvel = 2.5f;
+            xvel = 2.75f;
             helper.DoFlipObject(false);
             ExtendedRayCollisionCheck(-0.25f, 0);
             anim.SetBool("isRunning", true);
@@ -103,7 +103,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            yvel = 5.5f;
+            yvel = 5.65f;
 
             print("Jump");
             anim.SetBool("isJumping", true);
