@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerScript : MonoBehaviour
 {
 
@@ -85,6 +86,22 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("isRunning", true);
         }
 
+        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftShift))
+        {
+            xvel = -3.5f;
+            helper.DoFlipObject(true);
+            ExtendedRayCollisionCheck(0.25f, 0);
+            anim.SetBool("isRunning", true);
+        }
+
+        if (Input.GetKey("d") && Input.GetKey(KeyCode.LeftShift))
+        {
+            xvel = 3.5f;
+            helper.DoFlipObject(false);
+            ExtendedRayCollisionCheck(-0.25f, 0);
+            anim.SetBool("isRunning", true);
+        }
+
         //do ground check
 
         if (ExtendedRayCollisionCheck(-0.25f, 0) == true)
@@ -99,6 +116,7 @@ public class PlayerScript : MonoBehaviour
         {
             isGrounded = false;
         }
+
 
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
