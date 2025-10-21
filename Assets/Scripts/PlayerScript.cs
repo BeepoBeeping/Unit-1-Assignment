@@ -86,17 +86,17 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift))
         {
-            xvel = -3.5f;
+            xvel = -4f;
             helper.DoFlipObject(true);
             ExtendedRayCollisionCheck(0.25f, 0);
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("d") && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift))
         {
-            xvel = 3.5f;
+            xvel = 4f;
             helper.DoFlipObject(false);
             ExtendedRayCollisionCheck(-0.25f, 0);
             anim.SetBool("isRunning", true);
@@ -121,7 +121,7 @@ public class PlayerScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            yvel = 5.65f;
+            yvel = 5.75f;
 
             print("Jump");
             anim.SetBool("isJumping", true);
@@ -137,15 +137,14 @@ public class PlayerScript : MonoBehaviour
 
         if (lives == 0)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("LVL1");
             lives = 3;
         }
 
         if (health == 0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             lives = lives - 1;
-
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);            
         }
 
         Shoot();
