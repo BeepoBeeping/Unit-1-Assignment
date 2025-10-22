@@ -1,6 +1,6 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,11 +11,13 @@ public class PlayerScript : MonoBehaviour
     public bool isGrounded;
     public bool isRight;
     public Animator anim;
-    public LayerMask groundLayer;
+    public LayerMask groundLayer;   
     public int health;
     public int lives;
     public GameObject weapon;
     public int moveDirection;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI livesText;
     HelperScript helper;
 
     void Start()
@@ -65,6 +67,10 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
+        
+
+        healthText.text = health.ToString();
+        livesText.text = lives.ToString();
         float xvel, yvel;
 
         xvel = rb.linearVelocity.x;
@@ -103,7 +109,7 @@ public class PlayerScript : MonoBehaviour
         }
 
         //do ground check
-
+        
         if (ExtendedRayCollisionCheck(-0.25f, 0) == true)
         {
             isGrounded = true;
@@ -116,8 +122,7 @@ public class PlayerScript : MonoBehaviour
         {
             isGrounded = false;
         }
-
-
+        
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -125,7 +130,6 @@ public class PlayerScript : MonoBehaviour
 
             print("Jump");
             anim.SetBool("isJumping", true);
-            anim.SetBool("isRunning", false);
         }
 
         if (xvel == 0)
@@ -144,7 +148,7 @@ public class PlayerScript : MonoBehaviour
         if (health == 0)
         {
             lives = lives - 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);            
+            transform.position = new Vector3(0f, 0f, 0f);
         }
 
         Shoot();
@@ -177,7 +181,9 @@ public class PlayerScript : MonoBehaviour
 
         if (other.gameObject.tag == "DeathPlain")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            transform.position = new Vector3(0f, 0f, 0f);
+
+            lives = lives - 1;
         }
 
         if (other.gameObject.tag == "Finish")
