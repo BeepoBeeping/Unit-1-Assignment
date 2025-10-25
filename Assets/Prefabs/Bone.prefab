@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722374221297666893}
   - component: {fileID: 878658060400070161}
+  - component: {fileID: -6506061842919231697}
   - component: {fileID: -3834630978279052611}
   - component: {fileID: -1786706675870563789}
   m_Layer: 0
@@ -92,6 +93,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6506061842919231697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554501433253833485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b3ce2cbda0b974d839b412dd5b515d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BulletScript
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &-3834630978279052611
 Rigidbody2D:
   serializedVersion: 5
@@ -126,7 +142,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554501433253833485}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

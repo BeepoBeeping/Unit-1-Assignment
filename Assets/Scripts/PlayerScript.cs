@@ -70,7 +70,7 @@ public class PlayerScript : MonoBehaviour
         
 
         healthText.text = health.ToString();
-        livesText.text = lives.ToString();
+        livesText.text = lives.ToString(); // ui
         float xvel, yvel;
 
         xvel = rb.linearVelocity.x;
@@ -84,7 +84,7 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow)) // movement
         {
             xvel = 2.75f;
             helper.DoFlipObject(false);
@@ -100,12 +100,18 @@ public class PlayerScript : MonoBehaviour
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift)) // sprint
         {
             xvel = 4f;
             helper.DoFlipObject(false);
             ExtendedRayCollisionCheck(-0.25f, 0);
             anim.SetBool("isRunning", true);
+        }
+
+        if (Input.GetKey("r"))
+        {
+            print("Game Reset");
+            SceneManager.LoadScene("LVL1"); // reset game
         }
 
         //do ground check
@@ -157,7 +163,7 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    public void Shoot()
+    public void Shoot() // projectile 
     {
         moveDirection = 1;
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -172,7 +178,7 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D other) // basic collision stuff lol
     {
         if (other.gameObject.tag == "Enemy")
         {

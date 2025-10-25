@@ -99,5 +99,13 @@ public class EnemyScript : MonoBehaviour
 
     }
 
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
 }
