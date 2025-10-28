@@ -80,7 +80,7 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = -2.75f;
             helper.DoFlipObject(true);
-            ExtendedRayCollisionCheck(0.25f, 0);
+            ExtendedRayCollisionCheck(0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
@@ -88,7 +88,7 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = 2.75f;
             helper.DoFlipObject(false);
-            ExtendedRayCollisionCheck(-0.25f, 0);
+            ExtendedRayCollisionCheck(-0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
@@ -96,7 +96,7 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = -4f;
             helper.DoFlipObject(true);
-            ExtendedRayCollisionCheck(0.25f, 0);
+            ExtendedRayCollisionCheck(0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
@@ -104,7 +104,7 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = 4f;
             helper.DoFlipObject(false);
-            ExtendedRayCollisionCheck(-0.25f, 0);
+            ExtendedRayCollisionCheck(-0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
@@ -116,7 +116,7 @@ public class PlayerScript : MonoBehaviour
 
         //do ground check
         
-        if (ExtendedRayCollisionCheck(-0.25f, 0) == true)
+        if (ExtendedRayCollisionCheck(0f, 0) == true)
         {
             isGrounded = true;
             if (yvel < 0)
