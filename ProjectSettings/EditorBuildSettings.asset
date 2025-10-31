@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LVL2.unity
     guid: 89d854d5f89652d4e8df6684cab7b44d
+  - enabled: 1
+    path: Assets/Scenes/SCREEN.unity
+    guid: 9e259b9344225884ab26b85b9a4be107
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
