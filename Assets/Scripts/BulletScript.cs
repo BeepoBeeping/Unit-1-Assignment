@@ -44,10 +44,16 @@ public class BulletScript : MonoBehaviour
 
     }
 
+
     // Update is called once per frame
     void Update()
     {
         if (ExtendedRayCollisionCheck(0.5f, 0) == true)
+        {
+            Destroy(gameObject);
+        }
+
+        if(ExtendedRayCollisionCheck(-0.5f, 0) == true)
         {
             Destroy(gameObject);
         }

@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     public int lives;
     public GameObject weapon;
     public int moveDirection;
+    public bool playerDir;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI livesText;
     HelperScript helper;
@@ -80,6 +81,7 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = -2.75f;
             helper.DoFlipObject(true);
+            playerDir = false;
             ExtendedRayCollisionCheck(0.3f, 0);
             anim.SetBool("isRunning", true);
         }
@@ -88,22 +90,25 @@ public class PlayerScript : MonoBehaviour
         {
             xvel = 2.75f;
             helper.DoFlipObject(false);
+            playerDir = true;
             ExtendedRayCollisionCheck(-0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("a") || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey("a") && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift))
         {
             xvel = -4f;
             helper.DoFlipObject(true);
+            playerDir = false;
             ExtendedRayCollisionCheck(0.3f, 0);
             anim.SetBool("isRunning", true);
         }
 
-        if (Input.GetKey("d") || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift)) // sprint
+        if (Input.GetKey("d") && Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift)) // sprint
         {
             xvel = 4f;
             helper.DoFlipObject(false);
+            playerDir = true;
             ExtendedRayCollisionCheck(-0.3f, 0);
             anim.SetBool("isRunning", true);
         }
@@ -166,13 +171,21 @@ public class PlayerScript : MonoBehaviour
     public void Shoot() // projectile 
     {
         moveDirection = 1;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown("e"))
         {
             
             GameObject clone;
             clone = Instantiate(weapon, transform.position, transform.rotation);    
-            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();       
-            rb.linearVelocity = transform.right * 15;  
+            Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
+            if (playerDir == true)
+            {
+                rb.linearVelocity = transform.right * 15;
+            }
+            if (playerDir == false)
+            {
+                rb.linearVelocity = transform.right * -15;
+                helper.DoFlipObject(true);
+            }
             rb.transform.position = new Vector3(transform.position.x, transform.position.y + 0.15f, transform.position.z + 1);
         }
 
